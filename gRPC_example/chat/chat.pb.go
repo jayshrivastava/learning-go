@@ -24,8 +24,55 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Range struct {
+	StartIndex           int32    `protobuf:"varint,1,opt,name=StartIndex,proto3" json:"StartIndex,omitempty"`
+	EndIndex             int32    `protobuf:"varint,2,opt,name=EndIndex,proto3" json:"EndIndex,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Range) Reset()         { *m = Range{} }
+func (m *Range) String() string { return proto.CompactTextString(m) }
+func (*Range) ProtoMessage()    {}
+func (*Range) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8c585a45e2093e54, []int{0}
+}
+
+func (m *Range) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Range.Unmarshal(m, b)
+}
+func (m *Range) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Range.Marshal(b, m, deterministic)
+}
+func (m *Range) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Range.Merge(m, src)
+}
+func (m *Range) XXX_Size() int {
+	return xxx_messageInfo_Range.Size(m)
+}
+func (m *Range) XXX_DiscardUnknown() {
+	xxx_messageInfo_Range.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Range proto.InternalMessageInfo
+
+func (m *Range) GetStartIndex() int32 {
+	if m != nil {
+		return m.StartIndex
+	}
+	return 0
+}
+
+func (m *Range) GetEndIndex() int32 {
+	if m != nil {
+		return m.EndIndex
+	}
+	return 0
+}
+
 type ItemKey struct {
-	Index                int32    `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
+	Index                int32    `protobuf:"varint,1,opt,name=Index,proto3" json:"Index,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -35,7 +82,7 @@ func (m *ItemKey) Reset()         { *m = ItemKey{} }
 func (m *ItemKey) String() string { return proto.CompactTextString(m) }
 func (*ItemKey) ProtoMessage()    {}
 func (*ItemKey) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8c585a45e2093e54, []int{0}
+	return fileDescriptor_8c585a45e2093e54, []int{1}
 }
 
 func (m *ItemKey) XXX_Unmarshal(b []byte) error {
@@ -64,7 +111,7 @@ func (m *ItemKey) GetIndex() int32 {
 }
 
 type ItemValue struct {
-	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	Value                string   `protobuf:"bytes,1,opt,name=Value,proto3" json:"Value,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -74,7 +121,7 @@ func (m *ItemValue) Reset()         { *m = ItemValue{} }
 func (m *ItemValue) String() string { return proto.CompactTextString(m) }
 func (*ItemValue) ProtoMessage()    {}
 func (*ItemValue) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8c585a45e2093e54, []int{1}
+	return fileDescriptor_8c585a45e2093e54, []int{2}
 }
 
 func (m *ItemValue) XXX_Unmarshal(b []byte) error {
@@ -103,8 +150,8 @@ func (m *ItemValue) GetValue() string {
 }
 
 type Item struct {
-	Key                  *ItemKey   `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	Value                *ItemValue `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	Key                  *ItemKey   `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty"`
+	Value                *ItemValue `protobuf:"bytes,2,opt,name=Value,proto3" json:"Value,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`
 	XXX_sizecache        int32      `json:"-"`
@@ -114,7 +161,7 @@ func (m *Item) Reset()         { *m = Item{} }
 func (m *Item) String() string { return proto.CompactTextString(m) }
 func (*Item) ProtoMessage()    {}
 func (*Item) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8c585a45e2093e54, []int{2}
+	return fileDescriptor_8c585a45e2093e54, []int{3}
 }
 
 func (m *Item) XXX_Unmarshal(b []byte) error {
@@ -150,6 +197,7 @@ func (m *Item) GetValue() *ItemValue {
 }
 
 func init() {
+	proto.RegisterType((*Range)(nil), "chat.Range")
 	proto.RegisterType((*ItemKey)(nil), "chat.ItemKey")
 	proto.RegisterType((*ItemValue)(nil), "chat.ItemValue")
 	proto.RegisterType((*Item)(nil), "chat.Item")
@@ -158,17 +206,21 @@ func init() {
 func init() { proto.RegisterFile("chat.proto", fileDescriptor_8c585a45e2093e54) }
 
 var fileDescriptor_8c585a45e2093e54 = []byte{
-	// 160 bytes of a gzipped FileDescriptorProto
+	// 215 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4a, 0xce, 0x48, 0x2c,
-	0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x01, 0xb1, 0x95, 0xe4, 0xb9, 0xd8, 0x3d, 0x4b,
-	0x52, 0x73, 0xbd, 0x53, 0x2b, 0x85, 0x44, 0xb8, 0x58, 0x33, 0xf3, 0x52, 0x52, 0x2b, 0x24, 0x18,
-	0x15, 0x18, 0x35, 0x58, 0x83, 0x20, 0x1c, 0x25, 0x45, 0x2e, 0x4e, 0x90, 0x82, 0xb0, 0xc4, 0x9c,
-	0xd2, 0x54, 0x90, 0x92, 0x32, 0x10, 0x03, 0xac, 0x84, 0x33, 0x08, 0xc2, 0x51, 0xf2, 0xe3, 0x62,
-	0x01, 0x29, 0x11, 0x92, 0xe7, 0x62, 0xce, 0x4e, 0xad, 0x04, 0xcb, 0x71, 0x1b, 0xf1, 0xea, 0x81,
-	0xed, 0x82, 0x1a, 0x1e, 0x04, 0x92, 0x11, 0x52, 0x85, 0x69, 0x67, 0x02, 0x2b, 0xe1, 0x47, 0x28,
-	0x01, 0x1b, 0x0f, 0x35, 0xcf, 0xc8, 0x98, 0x8b, 0xc5, 0x39, 0x23, 0xb1, 0x44, 0x48, 0x9b, 0x8b,
-	0xdd, 0x3d, 0xb5, 0x04, 0x6c, 0x34, 0xaa, 0x69, 0x52, 0xe8, 0x3a, 0x95, 0x18, 0x92, 0xd8, 0xc0,
-	0xbe, 0x32, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0x8e, 0xf1, 0x24, 0x64, 0xe3, 0x00, 0x00, 0x00,
+	0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x01, 0xb1, 0x95, 0x9c, 0xb9, 0x58, 0x83, 0x12,
+	0xf3, 0xd2, 0x53, 0x85, 0xe4, 0xb8, 0xb8, 0x82, 0x4b, 0x12, 0x8b, 0x4a, 0x3c, 0xf3, 0x52, 0x52,
+	0x2b, 0x24, 0x18, 0x15, 0x18, 0x35, 0x58, 0x83, 0x90, 0x44, 0x84, 0xa4, 0xb8, 0x38, 0x5c, 0xf3,
+	0x52, 0x20, 0xb2, 0x4c, 0x60, 0x59, 0x38, 0x5f, 0x49, 0x9e, 0x8b, 0xdd, 0xb3, 0x24, 0x35, 0xd7,
+	0x3b, 0xb5, 0x52, 0x48, 0x84, 0x8b, 0x15, 0xd9, 0x04, 0x08, 0x47, 0x49, 0x91, 0x8b, 0x13, 0xa4,
+	0x20, 0x2c, 0x31, 0xa7, 0x34, 0x15, 0xa4, 0x04, 0xcc, 0x00, 0x2b, 0xe1, 0x0c, 0x82, 0x70, 0x94,
+	0xfc, 0xb8, 0x58, 0x40, 0x4a, 0x84, 0xe4, 0xb9, 0x98, 0xbd, 0x53, 0x2b, 0xc1, 0x72, 0xdc, 0x46,
+	0xbc, 0x7a, 0x60, 0x07, 0x43, 0x0d, 0x0f, 0x02, 0xc9, 0x08, 0xa9, 0xc2, 0xb4, 0x33, 0x81, 0x95,
+	0xf0, 0x23, 0x94, 0x80, 0x85, 0xa1, 0xe6, 0x19, 0x25, 0x71, 0xb1, 0x38, 0x67, 0x24, 0x96, 0x08,
+	0x69, 0x73, 0xb1, 0xbb, 0xa7, 0x96, 0x80, 0x8d, 0x46, 0x35, 0x4d, 0x0a, 0x5d, 0xa7, 0x12, 0x83,
+	0x90, 0x2e, 0x17, 0xa7, 0x4f, 0x66, 0x31, 0x58, 0x75, 0xb1, 0x10, 0x37, 0x44, 0x1e, 0x1c, 0x3c,
+	0x58, 0x14, 0x1b, 0x30, 0x26, 0xb1, 0x81, 0x43, 0xd2, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x19,
+	0x61, 0x04, 0xaf, 0x57, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -183,7 +235,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatClient interface {
+	// SIMPLE RPC - param is the client request and the return type is the server response
 	GetItem(ctx context.Context, in *ItemKey, opts ...grpc.CallOption) (*ItemValue, error)
+	// SERVERSIDE STREAM - server sends a stream of responses and the client reads them until there are no more
+	ListItems(ctx context.Context, in *Range, opts ...grpc.CallOption) (Chat_ListItemsClient, error)
 }
 
 type chatClient struct {
@@ -203,9 +258,44 @@ func (c *chatClient) GetItem(ctx context.Context, in *ItemKey, opts ...grpc.Call
 	return out, nil
 }
 
+func (c *chatClient) ListItems(ctx context.Context, in *Range, opts ...grpc.CallOption) (Chat_ListItemsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Chat_serviceDesc.Streams[0], "/chat.Chat/ListItems", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &chatListItemsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Chat_ListItemsClient interface {
+	Recv() (*ItemValue, error)
+	grpc.ClientStream
+}
+
+type chatListItemsClient struct {
+	grpc.ClientStream
+}
+
+func (x *chatListItemsClient) Recv() (*ItemValue, error) {
+	m := new(ItemValue)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ChatServer is the server API for Chat service.
 type ChatServer interface {
+	// SIMPLE RPC - param is the client request and the return type is the server response
 	GetItem(context.Context, *ItemKey) (*ItemValue, error)
+	// SERVERSIDE STREAM - server sends a stream of responses and the client reads them until there are no more
+	ListItems(*Range, Chat_ListItemsServer) error
 }
 
 // UnimplementedChatServer can be embedded to have forward compatible implementations.
@@ -214,6 +304,9 @@ type UnimplementedChatServer struct {
 
 func (*UnimplementedChatServer) GetItem(ctx context.Context, req *ItemKey) (*ItemValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetItem not implemented")
+}
+func (*UnimplementedChatServer) ListItems(req *Range, srv Chat_ListItemsServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListItems not implemented")
 }
 
 func RegisterChatServer(s *grpc.Server, srv ChatServer) {
@@ -238,6 +331,27 @@ func _Chat_GetItem_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Chat_ListItems_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Range)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ChatServer).ListItems(m, &chatListItemsServer{stream})
+}
+
+type Chat_ListItemsServer interface {
+	Send(*ItemValue) error
+	grpc.ServerStream
+}
+
+type chatListItemsServer struct {
+	grpc.ServerStream
+}
+
+func (x *chatListItemsServer) Send(m *ItemValue) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _Chat_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chat.Chat",
 	HandlerType: (*ChatServer)(nil),
@@ -247,6 +361,12 @@ var _Chat_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Chat_GetItem_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ListItems",
+			Handler:       _Chat_ListItems_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "chat.proto",
 }

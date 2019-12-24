@@ -40,6 +40,19 @@ func (s *chatServer) GetItem(ctx context.Context, key *pb.ItemKey) (*pb.ItemValu
 	return &pb.ItemValue{Value: ""}, nil
 }
 
+// ListFeatures lists all features contained within the given bounding Rectangle.
+func (s *chatServer) ListItems(rng *pb.Range, stream pb.Chat_ListItemsServer) error {
+	for key := rng.StartIndex; key < rng.EndIndex; key++ {
+        value, found := s.items[key]
+        if found {
+            if err := stream.Send(&pb.ItemValue{Value: value}); err != nil {
+                return err
+            }
+        }
+	}
+	return nil
+}
+
 func makeNewServer() *chatServer {
     server := chatServer{items: make(map[int32]string)}
     server.seed()
@@ -68,7 +81,6 @@ func main() {
     }
 
     grpcServer := grpc.NewServer()
-
 
 	pb.RegisterChatServer(grpcServer, makeNewServer())
 	grpcServer.Serve(lis)

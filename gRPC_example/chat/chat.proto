@@ -3,31 +3,37 @@ package chat;
 
 
 service Chat {
-    // SIMPLE RPC - param is the client request and the return type is the server response
     // rpc GetFeature(Point) returns (Feature) {}
-
-    // SERVERSIDE STREAM - server sends a stream of responses and the client reads them until there are no more 
-    // rpc ListFeatures(Rectangle) returns (stream Feature) {}
 
     // CLIENTSIDE STREAM - client sends a stream of requests and server reads them. then the client waits for a response
     // rpc RecordRoute(stream Point) returns (RouteSummary) {}
 
     // BIDIRECTIONAL STREAM - while it is open, the client and server can sent/recieve messages
     // rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
-
+    
+    // SIMPLE RPC - param is the client request and the return type is the server response
     rpc GetItem(ItemKey) returns (ItemValue) {}
+
+    // SERVERSIDE STREAM - server sends a stream of responses and the client reads them until there are no more 
+    rpc ListItems(Range) returns (stream ItemValue) {}
 
     
 }
 
-message ItemKey {
-    int32 index = 1;
+message Range {
+    int32 StartIndex = 1;
+    int32 EndIndex = 2;
 }
+
+message ItemKey {
+    int32 Index = 1;
+}
+
 message ItemValue {
-    string value = 1;
+    string Value = 1;
 }
 
 message Item {
-    ItemKey key = 1;
-    ItemValue value = 2;
+    ItemKey Key = 1;
+    ItemValue Value = 2;
 }
